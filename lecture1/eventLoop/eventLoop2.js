@@ -1,30 +1,34 @@
-const fs = require('fs');
+const fs = require("fs");
 
-console.log('START');
+console.log("START");
 
-setTimeout(() => console.log('setTimeout 1'), 0);
+setTimeout(() => {
+  setImmediate(() => console.log("add setImmediate"));
 
-setImmediate(() => console.log('setImmediate'));
+  console.log("setTimeout 1");
+}, 0);
 
-process.nextTick(() => console.log('Next Tick'));
+setImmediate(() => console.log("setImmediate"));
 
-setTimeout(() => console.log('setTimeout 2'), 0);
+process.nextTick(() => console.log("Next Tick"));
+
+setTimeout(() => console.log("setTimeout 2"), 0);
 
 fs.readFile(__filename, () => {
-   setTimeout(() => console.log('readFile setTimeout'), 0);
-   setImmediate(() => console.log('readFile setImmediate'));
-   process.nextTick(() => console.log('readFile Next Tick'));
+  setTimeout(() => console.log("readFile setTimeout"), 0);
+  setImmediate(() => console.log("readFile setImmediate"));
+  process.nextTick(() => console.log("readFile Next Tick"));
 });
 
-console.log('END');
-
+console.log("END");
 
 //start
-//  end 
-//  Next Tick 
-// setImmediate 
-// setTimeout 1 
+//  end
+//  Next Tick
+// setImmediate
+// setTimeout 1
 // setTimeout 2
-// readFile Next Tick 
+// add setImmediate
+// readFile Next Tick
 // readFile setImmediate
 // readFile setTimeout
