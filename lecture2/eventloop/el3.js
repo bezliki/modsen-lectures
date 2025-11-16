@@ -15,20 +15,23 @@ async function a2() {
 
 setTimeout(() => console.log('6'), 0);
 console.log('7');  //1
-a1().then(() => console.log('8'));//3
+a1().then(() => console.log('8'));
 Promise.resolve().then(() => console.log('9'));
-console.log('10'); //2
+console.log('10'); 
 
 /*
+// синхронный код
 7
-10
 1
 4
+10
+//микротаки
 5
+9
 2 
 ok
 8
-9
+//макро
 6
 
 
